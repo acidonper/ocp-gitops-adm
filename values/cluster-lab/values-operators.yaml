@@ -11,7 +11,7 @@ operators:
   external-secrets:
     enabled: true
     channel: stable
-    installPlanApproval: Automatic
+    approval: Automatic
     name: external-secrets-operator
     source: community-operators
     sourceNamespace: openshift-marketplace
