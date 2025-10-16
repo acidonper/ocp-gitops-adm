@@ -9,10 +9,13 @@ This repository contains a set of Helm Charts and Helm value files to manage dif
 
 ## Repo Structure
 
-- *charts*: Helm Charts to implement OCP objects 
-- *values*: Values files for every application, or Helm Chart, in specific OCP clusters (_*Each OpenShift Cluster should have a dedicated file for deploying the objects of its corresponding chart_)
-- *applications*: ArgoCD Applications to configure every application in specific OCP clusters (_*Each OpenShift Cluster should have a dedicated application for deploying the objects of every chart_)
-  - *app-of-apps*: ArgoCD App of Apps to configure automatically all the apps in specific OCP clusters
+- *charts*: This folder contains Helm Charts designed for managing their corresponding OpenShift Objects.
+- *values*: 
+  - *cluster_id*: This folder stores value files for each application or Helm Chart within this OpenShift Cluster. It is important to note that every OpenShift Cluster should have a set of dedicated files for deploying the objects of its corresponding charts.
+- *applications*:
+  - *app-of-apps*: This folder houses an ArgoCD Application (App of Apps) for each cluster. Each application points to a dedicated folder, described below, containing all the necessary ArgoCD applications for its respective cluster.
+  - *cluster_id*: This folder utilizes a collection of ArgoCD applications to facilitate the automatic deployment of objects within Openshift, leveraging the App of Apps pattern.
+
 
 ## App of Apps (Argo CD)
 
