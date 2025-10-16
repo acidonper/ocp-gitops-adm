@@ -10,9 +10,8 @@ render: true
 operators:
   external-secrets:
     enabled: true
-    channel: stable
-    approval: Automatic
-    name: external-secrets-operator
-    source: community-operators
+    channel: tech-preview-v0.1
+    installPlanApproval: Automatic
+    name: openshift-external-secrets-operator
+    source: redhat-operators
     sourceNamespace: openshift-marketplace
-    startingCSV: external-secrets-operator.v0.11.0
