@@ -1,0 +1,16 @@
+##
+# Openshift Operators Installation
+##
+
+# Control rendering of this chart
+# If set to false, this chart will not be rendered
+render: true
+
+# Operators
+operators:
+  external-secrets:
+    channel: stable
+    installPlanApproval: Automatic
+    name: external-secrets-operator
+    source: community-operators
+    sourceNamespace: openshift-marketplace

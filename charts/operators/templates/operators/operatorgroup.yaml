@@ -1,0 +1,16 @@
+{{- if $.Values.render }}
+{{- range $key, $val := $.Values.operators }}
+{{- if $val.namespace }}
+{{- if $val.enabled }}
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: {{ $val.name }}
+  namespace: {{ $val.namespace }}
+spec:
+  targetNamespaces:
+    - {{ $val.namespace }}
+{{- end }}
+{{- end }}
+{{- end }}

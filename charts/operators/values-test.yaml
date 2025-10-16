@@ -1,0 +1,23 @@
+##
+# Openshift Operators Installation
+##
+
+# Control rendering of this chart
+# If set to false, this chart will not be rendered
+render: true
+
+# Operators
+operators:
+  aap:
+    enabled: true
+    channel: stable-2.6
+    approval: Automatic
+    name: ansible-automation-platform-operator
+    source: redhat-operators
+    sourcenamespace: openshift-marketplace
+    namespace: ansible-automation-platform
+
+# ArgoCD Operator deployment
+argocd:
+  enabled: true
+  controller: openshift-gitops

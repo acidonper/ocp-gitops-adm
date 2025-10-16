@@ -1,0 +1,15 @@
+##
+# Openshift Cluster Bootstrap
+##
+
+# Control rendering of this chart
+# If set to false, this chart will not be rendered
+render: false
+
+# Operators
+operators: {}
+
+# ArgoCD Operator deployment
+argocd:
+  enabled: true
+  controller: openshift-gitops
