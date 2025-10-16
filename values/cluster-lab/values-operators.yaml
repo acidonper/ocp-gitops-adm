@@ -15,3 +15,11 @@ operators:
     name: openshift-external-secrets-operator
     source: redhat-operators
     sourceNamespace: openshift-marketplace
+  aap:
+    enabled: true
+    channel: stable-2.6
+    approval: Automatic
+    name: ansible-automation-platform-operator
+    source: redhat-operators
+    sourcenamespace: openshift-marketplace
+    namespace: ansible-aap
