@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: infra
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: 'default'
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: './charts/infra'
+    repoURL: 'https://github.com/acidonper/ocp-gitops-adm.git'
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - '../values/cluster-lab/values-infra.yaml'
+  sources: []
+  project: 'Default'

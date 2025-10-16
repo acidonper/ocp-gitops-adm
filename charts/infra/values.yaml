@@ -1,0 +1,11 @@
+namespaces: []
+
+rbac:
+  cluster:
+    admins: 
+      groups: []
+      users: []
+
+argocd:
+  enabled: true
+  controller: openshift-gitops

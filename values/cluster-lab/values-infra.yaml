@@ -1,0 +1,26 @@
+namespaces:
+  test01:
+    admins: 
+      groups:
+        - test-group01
+      users:
+        - test-user01
+
+  test02:
+    admins:
+      groups:
+        - test-group02
+      users:
+        - test-user02
+
+rbac:
+  cluster:
+    admins: 
+      groups:
+        - group01
+      users:
+        - user01
+
+argocd:
+  enabled: true
+  controller: openshift-gitops
