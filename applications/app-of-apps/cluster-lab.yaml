@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps-lab
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: 'default'
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: './applications/cluster-lab'
+    repoURL: 'https://github.com/acidonper/ocp-gitops-adm.git'
+    targetRevision: HEAD
+  sources: []
+  project: 'default'
+  syncPolicy:
+    automated:
+      enabled: true
