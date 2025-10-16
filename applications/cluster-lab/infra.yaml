@@ -15,7 +15,7 @@ spec:
       valueFiles:
         - '../values/cluster-lab/values-infra.yaml'
   sources: []
-  project: 'Default'
+  project: 'default'
   syncPolicy:
     automated:
       enabled: true
