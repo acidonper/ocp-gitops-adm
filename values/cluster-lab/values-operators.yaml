@@ -9,6 +9,7 @@ render: true
 # Operators
 operators:
   external-secrets:
+    enabled: true
     channel: stable
     installPlanApproval: Automatic
     name: external-secrets-operator
