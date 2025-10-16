@@ -13,7 +13,7 @@ spec:
     targetRevision: HEAD
     helm:
       valueFiles:
-        - '../values/cluster-lab/values-infra.yaml'
+        - '../../values/cluster-lab/values-infra.yaml'
   sources: []
   project: 'default'
   syncPolicy:
