@@ -13,5 +13,6 @@ operators:
     channel: stable
     approval: Automatic
     name: external-secrets-operator
-    source: redhat-operators
+    source: community-operators
     sourceNamespace: openshift-marketplace
+    startingCSV: external-secrets-operator.v0.11.0
