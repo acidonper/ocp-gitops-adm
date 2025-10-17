@@ -9,7 +9,8 @@ For more information, see https://keepachangelog.com/en/1.0.0/
 
 ## [Unreleased]
 
-- No changes documented yet.
+- Documentation: expanded `README.md` with configuration and usage examples for `projects`, `argocdNamespace` and template behavior.
+- Documentation: added guidance for creating AppProject policies (roles/policies) and example values; noted that templates need to be extended to render them.
 
 ## [0.1.0] - 2025-10-17
 

@@ -19,4 +19,18 @@ spec:
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
+  roles:
+    - name: admins
+      description: 'Admins for {{ $key }} project'
+      policies:
+        - 'p, proj:{{ $key }}:admin, *, *, *, allow'
+{{- range $user := $val.usersAdmins }}
+        - 'p, {{ $user }}, *, *, *, allow'
+{{- end }}
+{{ if $val.groupsAdmins }}
+      groups:
+{{- range $admin := $val.groupsAdmins }}
+        - {{ $admin }}
+{{- end }}
+{{- end }}
 {{- end }}

@@ -13,13 +13,13 @@ This chart renders Argo CD AppProject objects using values from `values.yaml`. T
 - `projects` (map) — AppProject definitions keyed by project name.
 	- `sources` (list) — repository URLs allowed for the project (populates `sourceRepos`).
 	- `destinationsNamespaces` (list) — namespaces the project can deploy into (populates `destinations`).
+    - `groupsAdmins` (list) - groups who can admin the Argo Project
+    - `usersAdmins` (list) - users who can admin the Argo Project
 
 - `applications` (map) — reserved for future use / optional application manifests (not rendered by default by this chart).
 
 - `argocdNamespace` (string) — namespace where AppProject resources are created (defaults to `openshift-gitops` in the template).
 
-How templates use these values
-- `templates/project.yaml` iterates over `projects` and renders an `AppProject` for each entry, filling `sourceRepos` from `projects.<name>.sources` and `destinations` from `projects.<name>.destinationsNamespaces`.
 
 ## Install
 
@@ -40,8 +40,12 @@ helm lint
 - Render templates Locally
 
 ```bash
-helm template . --debug -f valuest-test.yaml
+helm template . --debug -f values-test.yaml
 ```
+
+## Recent changes
+
+See `CHANGELOG.md` for recent updates and release notes. The README was expanded to document chart values and usage (projects, argocdNamespace and template behavior).
 
 ## Author Information
 
