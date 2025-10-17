@@ -23,10 +23,10 @@ spec:
     - name: admins
       description: 'Admins for {{ $key }} project'
       policies:
-        - 'p, proj:{{ $key }}:admins, applications, *, *, allow'
-        - 'p, proj:{{ $key }}:admins, applicationsets, *, *, allow'
-        - 'p, proj:{{ $key }}:admins, repositories, *, *, allow'
-        - 'p, proj:{{ $key }}:admins, certificates, *, *, allow'
+        - 'p, proj:{{ $key }}:admins, applications, *, {{ $key }}/*, allow'
+        - 'p, proj:{{ $key }}:admins, applicationsets, *, {{ $key }}/*, allow'
+        - 'p, proj:{{ $key }}:admins, repositories, *, {{ $key }}/*, allow'
+        - 'p, proj:{{ $key }}:admins, certificates, *, {{ $key }}/*, allow'
 {{ if $val.groupsAdmins }}
       groups:
 {{- range $admin := $val.groupsAdmins }}
