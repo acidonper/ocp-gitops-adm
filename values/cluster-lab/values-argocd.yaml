@@ -8,5 +8,8 @@ projects:
     sources:
       - https://github.com/acidonper/jump-app-gitops.git
     destinationsNamespaces:
-      - namespace01
-      - namespace02
+      - test01
+    groupsAdmins:
+      - test-group01
+    usersAdmins:
+      - test-user02
