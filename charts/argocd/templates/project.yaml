@@ -36,10 +36,13 @@ spec:
     - name: useradmins
       description: 'User Admins for {{ $key }} project'
       policies:
+{{ if $val.groupsAdmins }}
+        - 'p, proj:{{ $key }}:useradmins, applications, *, {{ $key }}/*, allow'
+        - 'p, proj:{{ $key }}:useradmins, applicationsets, *, {{ $key }}/*, allow'
+        - 'p, proj:{{ $key }}:useradmins, repositories, *, {{ $key }}/*, allow'
+        - 'p, proj:{{ $key }}:useradmins, certificates, *, {{ $key }}/*, allow'
 {{- range $user := $val.usersAdmins }}
-        - 'p, {{ $user }}, applications, *, {{ $key }}/*, allow'
-        - 'p, {{ $user }}, applicationsets, *, {{ $key }}/*, allow'
-        - 'p, {{ $user }}, repositories, *, {{ $key }}/*, allow'
-        - 'p, {{ $user }}, certificates, *, {{ $key }}/*, allow'
+        - 'g, {{ $user }}, role:useradmins'
+{{- end }}
 {{- end }}
 {{- end }}
