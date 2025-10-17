@@ -10,6 +10,6 @@ projects:
     destinationsNamespaces:
       - test01
     groupsAdmins:
-      - test-group01
+      - test-group02
     usersAdmins:
-      - test-user02
+      - test-user04
