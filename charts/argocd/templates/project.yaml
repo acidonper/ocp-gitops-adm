@@ -23,14 +23,17 @@ spec:
     - name: admins
       description: 'Admins for {{ $key }} project'
       policies:
-        - 'p, proj:{{ $key }}:admin, *, *, *, allow'
-{{- range $user := $val.usersAdmins }}
-        - 'p, {{ $user }}, *, *, *, allow'
-{{- end }}
+        - 'p, proj:{{ $key }}:admins, applications, *, *, allow'
+        - 'p, proj:{{ $key }}:admins, applicationsets, *, *, allow'
+        - 'p, proj:{{ $key }}:admins, repositories, *, *, allow'
+        - 'p, proj:{{ $key }}:admins, certificates, *, *, allow'
 {{ if $val.groupsAdmins }}
       groups:
 {{- range $admin := $val.groupsAdmins }}
         - {{ $admin }}
+{{- range $user := $val.usersAdmins }}
+        - {{ $user }}
+{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}
