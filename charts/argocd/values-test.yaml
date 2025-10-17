@@ -17,5 +17,3 @@ projects:
       - jump-app-prod
     groupsAdmins:
       - ocp-gitops-admins
-    usersAdmins:
-      - user01

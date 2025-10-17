@@ -11,5 +11,3 @@ projects:
       - test01
     groupsAdmins:
       - test-group02
-    usersAdmins:
-      - test-user04
