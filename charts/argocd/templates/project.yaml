@@ -27,16 +27,19 @@ spec:
         - 'p, proj:{{ $key }}:admins, applicationsets, *, {{ $key }}/*, allow'
         - 'p, proj:{{ $key }}:admins, repositories, *, {{ $key }}/*, allow'
         - 'p, proj:{{ $key }}:admins, certificates, *, {{ $key }}/*, allow'
-{{- range $user := $val.usersAdmins }}
-        - 'p, {{ $user }}, applications, *, {{ $key }}/*, allow'
-        - 'p, {{ $user }}, applicationsets, *, {{ $key }}/*, allow'
-        - 'p, {{ $user }}, repositories, *, {{ $key }}/*, allow'
-        - 'p, {{ $user }}, certificates, *, {{ $key }}/*, allow'
-{{- end }}
 {{ if $val.groupsAdmins }}
       groups:
 {{- range $admin := $val.groupsAdmins }}
         - {{ $admin }}
 {{- end }}
+{{- end }}
+    - name: useradmins
+      description: 'User Admins for {{ $key }} project'
+      policies:
+{{- range $user := $val.usersAdmins }}
+        - 'p, {{ $user }}, applications, *, {{ $key }}/*, allow'
+        - 'p, {{ $user }}, applicationsets, *, {{ $key }}/*, allow'
+        - 'p, {{ $user }}, repositories, *, {{ $key }}/*, allow'
+        - 'p, {{ $user }}, certificates, *, {{ $key }}/*, allow'
 {{- end }}
 {{- end }}
