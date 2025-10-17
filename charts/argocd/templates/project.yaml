@@ -1,0 +1,22 @@
+{{- range $key, $val := $.Values.projects }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ $key }}
+  namespace: {{ $.Values.argocdNamespace | default "openshift-gitops" }}
+spec:
+  description: '{{ $key }} Project'
+{{- range $repo := $val.sources }}
+  sourceRepos:
+    - '{{ $repo }}'
+{{- end }}
+  destinations:
+{{- range $ns := $val.destinationsNamespaces }}
+    - namespace: {{ $ns }}
+      server: https://kubernetes.default.svc
+{{- end }}  
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+{{- end }}

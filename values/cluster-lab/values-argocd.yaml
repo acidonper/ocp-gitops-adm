@@ -1,0 +1,12 @@
+##
+# ArgoCD Chart values
+##
+
+# Project specifications
+projects:
+  project01:
+    sources:
+      - https://github.com/acidonper/jump-app-gitops.git
+    destinationsNamespaces:
+      - namespace01
+      - namespace02
