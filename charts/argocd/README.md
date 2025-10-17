@@ -14,7 +14,6 @@ This chart renders Argo CD AppProject objects using values from `values.yaml`. T
 	- `sources` (list) — repository URLs allowed for the project (populates `sourceRepos`).
 	- `destinationsNamespaces` (list) — namespaces the project can deploy into (populates `destinations`).
     - `groupsAdmins` (list) - groups who can admin the Argo Project
-    - `usersAdmins` (list) - users who can admin the Argo Project
 
 - `applications` (map) — reserved for future use / optional application manifests (not rendered by default by this chart).
 
