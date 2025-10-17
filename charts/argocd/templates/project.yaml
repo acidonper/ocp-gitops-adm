@@ -42,7 +42,7 @@ spec:
         - 'p, proj:{{ $key }}:useradmins, repositories, *, {{ $key }}/*, allow'
         - 'p, proj:{{ $key }}:useradmins, certificates, *, {{ $key }}/*, allow'
 {{- range $user := $val.usersAdmins }}
-        - 'g, {{ $user }}, role:useradmins'
+        - 'g, {{ $user }}, proj:{{ $key }}:useradmins'
 {{- end }}
 {{- end }}
 {{- end }}
