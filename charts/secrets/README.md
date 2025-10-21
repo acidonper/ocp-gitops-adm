@@ -55,6 +55,20 @@ helm install secrets . --dry-run --debug
 - Keep credentials for external providers (for example AWS access keys) in Kubernetes Secrets and reference them via `secretRef` as shown in the example.
 - Validate that the External Secrets Operator supports the provider block structure you use.
 
+## Using Hashicorp Vault secret manager
+
+- Create the respective secret in Vault:
+
+```bash
+vault kv put secret/foo my-value=s3cr3t
+```
+
+- Create a secret in the final namespace to provide Vault credentials to external secrets:
+
+```bash
+oc create secret generic vault-token --from-literal=password=xxxx -n openshift-gitops
+```
+
 
 ## Using AWS secret management
 
