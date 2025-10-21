@@ -83,7 +83,6 @@ spec:
           - name: proxy-tls
             mountPath: /etc/tls/private
             readOnly: true
-        resources: {}
       volumes:
         - name: proxy-tls
           secret:
