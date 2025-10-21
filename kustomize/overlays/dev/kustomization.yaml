@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+namespace: test01
+
+commonLabels:
+  environment: development
+
+patches:
+  - path: deployment-patch.yaml
+    target:
+      kind: Deployment
+      name: test-app
+  - path: route-patch.yaml
+    target:
+      kind: Route
+      name: test-app-route
+
+images:
+  - name: quay.io/test-app-backend
+    newTag: latest
+  - name: quay.io/test-app-frontend
+    newTag: latest

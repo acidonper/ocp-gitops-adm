@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+  - serviceaccount.yaml
+
+commonLabels:
+  app.kubernetes.io/name: test-app
+  app.kubernetes.io/version: "1.0.0"
+
+images:
+  - name: quay.io/test-app-backend
+    newTag: latest
+  - name: quay.io/test-app-frontend
+    newTag: latest

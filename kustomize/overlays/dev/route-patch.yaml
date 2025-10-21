@@ -1,0 +1,11 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: test-app-route
+  labels:
+    app: test-app
+    environment: development
+spec:
+  host: dashboard-dev.apps.cluster-mvgzj.mvgzj.sandbox5338.opentlc.com
+...
