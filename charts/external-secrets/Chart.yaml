@@ -1,5 +1,5 @@
 apiVersion: v2
-name: secrets
+name: external-secrets
 description: A Helm chart to manage secrets in Openshift using External Secrets Operator
 type: application
 
