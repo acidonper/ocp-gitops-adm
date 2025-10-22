@@ -15,7 +15,7 @@ spec:
             - /bin/bash
             - -c
             - |
-              cat <<EOF > ./argocd-patch.yaml
+              cat <<EOF > /tmp/argocd-patch.yaml
               spec:
                 sourceNamespaces: 
 {{- range .Values.projects }}
@@ -24,7 +24,8 @@ spec:
 {{- end }}
 {{- end }}
               EOF
-              oc patch argocd {{ $.Values.argocdInstance | default "openshift-gitops" }} -n {{ $.Values.argocdNamespace | default "openshift-gitops" }} --type='merge' --patch-file=./argocd-patch.yaml
+              oc patch argocd {{ $.Values.argocdInstance | default "openshift-gitops" }} -n {{ $.Values.argocdNamespace | default "openshift-gitops" }} --type='merge' --patch-file=/tmp/argocd-patch.yaml
+              sleep 10
 
           imagePullPolicy: Always
           name: sync-source-namespaces-argo-apps
