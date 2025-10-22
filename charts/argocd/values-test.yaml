@@ -12,7 +12,6 @@ projects:
     sources:
       - https://github.com/acidonper/jump-app-gitops.git
     destinationsNamespaces:
-      - aap
       - jump-app-dev
       - jump-app-qe
       - jump-app-prod
@@ -22,9 +21,8 @@ projects:
     sources:
       - https://github.com/acidonper/jump-app-gitops.git
     destinationsNamespaces:
-      - aap
-      - jump-app-dev
-      - jump-app-qe
-      - jump-app-prod
+      - aap01
+      - aap02
+      - aap03
     groupsAdmins:
       - ocp-gitops-admins
