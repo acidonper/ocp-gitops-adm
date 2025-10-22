@@ -11,3 +11,12 @@ projects:
       - test01
     groupsAdmins:
       - test-group02
+  project02:
+    sources:
+      - https://github.com/acidonper/jump-app-gitops.git
+    destinationsNamespaces:
+      - test02
+      - test03
+      - test04
+    groupsAdmins:
+      - test-group02
