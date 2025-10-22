@@ -13,6 +13,13 @@ namespaces:
       users:
         - test-user02
 
+  test03:
+    admins:
+      groups:
+        - test-group03
+      users:
+        - test-user03
+
 rbac:
   cluster:
     admins: 
