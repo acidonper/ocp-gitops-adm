@@ -86,6 +86,53 @@ spec:
       requests:
         cpu: 250m
         memory: 256Mi
+      env:
+        - name: AVP_AUTH_TYPE
+          valueFrom:
+            secretKeyRef: 
+              key: AVP_AUTH_TYPE
+              name: argocd-vault-plugin-credentials
+        - name: AVP_TYPE
+          valueFrom:
+            secretKeyRef: 
+              key: AVP_TYPE
+              name: argocd-vault-plugin-credentials
+        - name: VAULT_ADDR
+          valueFrom:
+            secretKeyRef: 
+              key: VAULT_ADDR
+              name: argocd-vault-plugin-credentials
+        - name: VAULT_TOKEN
+          valueFrom:
+            secretKeyRef: 
+              key: VAULT_TOKEN
+              name: argocd-vault-plugin-credentials
+      volumeMounts:
+        - name: custom-tools
+          mountPath: /usr/local/bin/argocd-vault-plugin
+          subPath: argocd-vault-plugin
+      volumes:
+      - name: custom-tools
+        emptyDir: {}
+      initContainers:
+      - name: download-tools
+        image: alpine:3.8
+        command: [sh, -c]
+
+        # Don't forget to update this to whatever the stable release version is
+        # Note the lack of the `v` prefix unlike the git tag
+        env:
+          - name: AVP_VERSION
+            value: "1.18.0"
+        args:
+          - >-
+            wget -O argocd-vault-plugin
+            https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v${AVP_VERSION}/argocd-vault-plugin_${AVP_VERSION}_linux_amd64 &&
+            chmod +x argocd-vault-plugin &&
+            mv argocd-vault-plugin /custom-tools/
+        volumeMounts:
+          - mountPath: /custom-tools
+            name: custom-tools
 {{- if $.Values.projects }}
   sourceNamespaces:
 {{- range .Values.projects }}
