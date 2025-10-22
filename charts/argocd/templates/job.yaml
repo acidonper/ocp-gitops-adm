@@ -3,6 +3,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   generateName: sync-source-namespaces-argo-apps-
+  namespace: {{ $.Values.argocdNamespace | default "openshift-gitops" }}
   annotations:
     argocd.argoproj.io/hook: PostSync
 spec:
