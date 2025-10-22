@@ -33,4 +33,8 @@ spec:
         - {{ $admin }}
 {{- end }}
 {{- end }}
+  sourceNamespaces:
+{{- range $ns := $val.destinationsNamespaces }}
+    - '{{ $ns }}'
+{{- end }}
 {{- end }}

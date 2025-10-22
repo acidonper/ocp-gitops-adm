@@ -3,11 +3,22 @@
 ##
 
 # Argo CD Namespace to create objects
+argocdInstance: openshift-gitops
 argocdNamespace: openshift-gitops
 
 # Project specifications
 projects:
   project01:
+    sources:
+      - https://github.com/acidonper/jump-app-gitops.git
+    destinationsNamespaces:
+      - aap
+      - jump-app-dev
+      - jump-app-qe
+      - jump-app-prod
+    groupsAdmins:
+      - ocp-gitops-admins
+  project02:
     sources:
       - https://github.com/acidonper/jump-app-gitops.git
     destinationsNamespaces:

@@ -1,0 +1,34 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: sync-source-namespaces-argo-apps-
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+spec:
+  template:
+    spec:
+      containers:
+        - image: quay.io/openshift/origin-cli:4.18
+          command:
+            - /bin/bash
+            - -c
+            - |
+              cat <<EOF > ./argocd-patch.yaml
+              spec:
+                sourceNamespaces: 
+{{- range .Values.projects }}
+{{- range $ns := .destinationsNamespaces }}
+                  - '{{ $ns }}'
+{{- end }}
+{{- end }}
+              EOF
+              oc patch argocd {{ $.Values.argocdInstance | default "openshift-gitops" }} -n {{ $.Values.argocdNamespace | default "openshift-gitops" }} --type='merge' --patch-file=./argocd-patch.yaml
+
+          imagePullPolicy: Always
+          name: sync-source-namespaces-argo-apps
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: sync-source-namespaces-argo-apps
+      serviceAccountName: sync-source-namespaces-argo-apps
+      terminationGracePeriodSeconds: 10
