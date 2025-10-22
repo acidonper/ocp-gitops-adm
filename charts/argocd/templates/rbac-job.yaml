@@ -1,0 +1,49 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sync-source-namespaces-argo-apps
+  namespace: {{ $.Values.argocdNamespace | default "openshift-gitops" }}
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/sync-wave: '-2'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: sync-source-namespaces-argo-apps-local
+  namespace: {{ $.Values.argocdNamespace | default "openshift-gitops" }}
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/sync-wave: '-2'
+rules:
+  - apiGroups:
+      - argoproj.io
+    resources:
+      - argocds
+    verbs:
+      - get
+      - list
+      - watch
+      - patch
+      - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: sync-source-namespaces-argo-apps-local
+  namespace: {{ $.Values.argocdNamespace | default "openshift-gitops" }}
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/sync-wave: '-1'
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: sync-source-namespaces-argo-apps-local
+subjects:
+  - kind: ServiceAccount
+    name: sync-source-namespaces-argo-apps
+    namespace: {{ $.Values.argocdNamespace | default "openshift-gitops" }}
